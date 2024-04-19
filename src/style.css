@@ -163,4 +163,10 @@ table {
     border: 0;
     border-radius: 1rem;
     background-color: var(--_surface);
+    
+}
+
+.glassy-button:hover,
+.glassy-button:focus-visible {
+    translate: 0 -.5rem;
 }
