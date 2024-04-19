@@ -162,11 +162,31 @@ table {
     padding: 1rem 1.5rem;
     border: 0;
     border-radius: 1rem;
-    background-color: var(--_surface);
-    
+    background-color: coral;
+    position: relative;
+
+    &::after {
+        content: '';
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        border-radius: inherit;
+        background-color: var(--_surface);
+        transition: translate 200ms;
+    }
+
+    &:hover,
+    &:focus-visible {
+        translate: 0 -.5rem;
+
+        &::after {
+            translate: 0 .65rem;
+        }
+    }
 }
 
-.glassy-button:hover,
-.glassy-button:focus-visible {
-    translate: 0 -.5rem;
+
+
+.glassy-button:nth-child(1) {
+    --_surface: var(--button-1-surface);
 }
