@@ -151,19 +151,42 @@ table {
     border-spacing: 0;
 }
 
-
-
-
 .glassy-button {
+    --_padding: 1rem 1.5rem;
+    --_transition-speed: 200ms;
+
+    --_hoover_opacity: .4;
+    --_pressed_opacity: .15;
+    --_hover-blurriness: 5px;
+    --_pressed-blurriness: 10px;
+
+    --_hover-offset: 0.5rem;
+    --_pressed-offset: 0.25rem;
+
     cursor: pointer;
     font: inherit;
     color: var(--button-text);
     font-weight: 500;
-    padding: 1rem 1.5rem;
+    padding: 0;
     border: 0;
     border-radius: 1rem;
-    background-color: coral;
+    background-color: transparent;
     position: relative;
+
+
+    span {
+        display: block;
+        overflow: hidden;
+        padding: var(--_padding);
+        border-radius: inherit;
+        background-color: hsl(0 0% 100% / 0);
+        backdrop-filter: blur(0px);
+        transition:
+            background-color var(--_transition-speed);
+        backdrop-filter: var(--_transition-speed);
+        translate: var(--_transition-speed);
+    }
+
 
     &::after {
         content: '';
@@ -172,21 +195,44 @@ table {
         inset: 0;
         border-radius: inherit;
         background-color: var(--_surface);
-        transition: translate 200ms;
+        transition:
+            scale var(--_transition-speed),
+            translate var(--_transition-speed);
     }
 
     &:hover,
     &:focus-visible {
-        translate: 0 -.5rem;
+        span {
+            background-color: hsl(0 0% 100% / var(--_hover-opacity));
+            backdrop-filter: blur(var(--_hover-blurriness));
+            translate: 0 calc(var(--_hover-offset) * -1);
+        }
 
         &::after {
-            translate: 0 .65rem;
+            scale: .95;
+            translate: 0 .125rem;
         }
+    }
+
+    &:active {
+        span {
+            backdrop-filter: blur(var(--_pressed-blurriness));
+            background-color: hsl(0 0% 100% / var(--_pressed-opacity));
+            translate: 0 calc(var(--_pressed-offset) * -1);
+        }
+    }
+
+    &::after {
+        scale: .875;
+        translate: 0 .25rem;
     }
 }
 
-
-
+/* 
 .glassy-button:nth-child(1) {
     --_surface: var(--button-1-surface);
-}
+} */
+
+/* Where i left off: 
+    00:19:45 / 00:45:38 
+*/
