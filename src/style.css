@@ -230,7 +230,10 @@ span {
 
     &::after {
         scale: .95;
-        translate: 0 .125rem;
+        translate: 0 .125rem
+        ;
+
+        transform: translate(var(--_y-motion), var(--_x-motion));
     }
 }
 
@@ -255,5 +258,5 @@ span {
 } */
 
 /* Where i left off: 
-    00:24:29 / 00:45:38 
+    00:26:37 / 00:45:38 
 */
