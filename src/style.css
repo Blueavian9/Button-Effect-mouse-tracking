@@ -154,16 +154,18 @@ table {
 .glassy-button {
     --_padding: 1rem 1.5rem;
     --_transition-speed: 200ms;
-
     --_hoover_opacity: .4;
     --_pressed_opacity: .15;
+    /* 0 -> 1 */
     --_hover-blurriness: 5px;
+    /* 0 -> 1 */
     --_pressed-blurriness: 10px;
-
+    /* 0 -> 1 */
     --_frostiness: .3;
-
     --_hover-offset: 0.5rem;
     --_pressed-offset: 0.25rem;
+    --_motion-factor: 1;
+    /* 0 -> 1 */
 
     outline: 0;
     cursor: pointer;
@@ -230,8 +232,7 @@ span {
 
     &::after {
         scale: .95;
-        translate: 0 .125rem
-        ;
+        translate: 0 .125rem;
 
         transform: translate(var(--_y-motion), var(--_x-motion));
     }
@@ -260,3 +261,22 @@ span {
 /* Where i left off: 
     00:26:37 / 00:45:38 
 */
+
+@keyframes enter {
+    from {
+        transform: translate(0, 0)
+    }
+
+    to {
+        transform:
+            translate(var(--x-motion) * var(--motion-factor) * -1),
+            var(--y-motion) * var(--motion-factor) * -1));
+    }
+
+    @keyframes exit {
+        from {
+            transform:
+                translate(var(--x-motion),
+                    var(--y-motion));
+        }
+    }
